@@ -1,0 +1,20 @@
+[project]
+name = "mcp-web-search"
+version = "0.1.0"
+description = "MCP server providing DuckDuckGo search and site fetching tools"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ddgs>=9.14.4",
+    "mcp>=1.28.1",
+]
+
+[project.scripts]
+mcp-web-search = "mcp_web_search.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mcp_web_search"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
