@@ -7,3 +7,6 @@
 
 # venv
 .venv/
+
+# environment/secret files
+.env
