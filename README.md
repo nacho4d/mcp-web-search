@@ -1,12 +1,17 @@
 # mcp-web-search
 
-> A local MCP server that gives Claude web search and page-fetching capabilities — built to work around the network restrictions that Claude organisation accounts operate under.
+> A local MCP server that gives Claude or IBM Bob or other Agents web search and page-fetching capabilities.
+> Built to work around:
+> - the network restrictions that Claude organisation accounts operate under.
+> - no built-in "web search" capabilities.
 
 ## Why this exists
 
 Claude.ai organisation accounts restrict outbound network access to a fixed domain allowlist. General web search and browsing are blocked and regular members cannot change that. Personal accounts have built-in web search and don't have this problem.
 
 This server runs locally on your machine — where the internet is unrestricted — and proxies web requests back to Claude via the MCP protocol. If you've ever hit `host_not_allowed` with no way to fix it, this is for you.
+
+IBM Bob does not have built-in web-browsing or internet capability due.
 
 ## What it does
 
@@ -30,12 +35,12 @@ Two tools, nothing more:
 
 ```mermaid
 graph TD
-    Claude[Claude Desktop] -->|MCP stdio / HTTP| Server[mcp-web-search<br/>FastMCP server]
+    AIAgent[AI Agent] -->|MCP stdio / HTTP| Server[mcp-web-search<br/>FastMCP server]
     Server -->|HTTPS| DDG[DuckDuckGo API]
     Server -->|HTTPS| Web[Any public URL]
 ```
 
-Claude calls one of the two tools over MCP. The server makes the outbound request from the local machine (bypassing Claude's network restrictions) and returns structured JSON.
+AI agent calls one of the two tools over MCP. The server makes the outbound request from the local machine (bypassing Claude and/or IBM Bob's network restrictions) and returns structured JSON.
 
 ## Key design decisions
 
